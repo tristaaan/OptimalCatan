@@ -62,6 +62,10 @@ constraint forall(r in 1..nRows) (
   )
 );
 
+
+% desert in the center
+% constraint Board[3,3] = 2; % UNSAT!
+
 % Place the water on the edges
 constraint Board[1,4] = 1;
 constraint Board[1,5] = 1;

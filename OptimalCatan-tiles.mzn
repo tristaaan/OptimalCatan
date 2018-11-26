@@ -72,11 +72,9 @@ constraint Board[5,2] = 1;
 constraint Board[5,1] = 1;
 
 % break rotational symm
-constraint Board[1,1] < Board[5,5];
 constraint Board[1,1] < Board[3,5];
-
-% break reflective symm
-
+constraint Board[1,1] < Board[5,5];
+constraint Board[3,5] < Board[5,5];
 
 % Objective
 solve satisfy;

@@ -1,20 +1,21 @@
 include "globals.mzn";
 
 % Parameters
-% Resources
-%              1      2       3      4      5      6      7 
-enum Resource={Water, Desert, Brick, Grain, Sheep, Stone, Wood};
-set of int: Resources = 1..7;
-array[Resources] of int: ResourceCounts = [6, 1, 3, 4, 4, 3, 4];
-
-% 5-6 players, 6x6 board
-% array[Resources] of int: ResourceCounts = [12, 2, 5, 6, 6, 5, 6];
 
 % Board size
 int: nRows = 5;
 int: nCols = 5;
 set of int: Rows = 1..nRows;
 set of int: Cols = 1..nCols;
+
+% Resources
+%               1      2       3      4      5      6      7 
+% enum Resource={Water, Desert, Brick, Grain, Sheep, Stone, Lumber};
+set of int: Resources = 1..7;
+array[Resources] of int: ResourceCounts = [6, 1, 3, 4, 4, 3, 4];
+
+% 5-6 players, 6x6 board
+% array[Resources] of int: ResourceCounts = [12, 2, 5, 6, 6, 5, 6];
 
 % Decision Variables
 array[Rows, Cols] of var Resources: Board;
@@ -25,6 +26,7 @@ constraint forall(re in Resources)(
   sum(r in Rows)(count(Board[r,..], re)) = ResourceCounts[re]
 );
 
+% No two of the same resources are adjacent
 constraint forall(r in 1..nRows-1) (
   forall(c in 1..nCols-1) (
     alldifferent_except_0([Board[r,c]-1, Board[r, c+1]-1, 

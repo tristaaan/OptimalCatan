@@ -71,6 +71,15 @@ constraint forall(res in {3,4,5,6,7}) (
   all_different([Marker[r,c] | r in Rows, c in Cols where Board[r,c] = res ])
 );
 
+% distribute markers so that the sum of a vertex is under some threshold
+constraint forall(r in 1..nRows-1)(
+  forall(c in 1..nCols-1 where Marker[r,c] > 1) (
+    Marker[r,c] + Marker[r+1,c] + Marker[r+1, c+1] < 23
+    /\
+    Marker[r,c] + Marker[r,c+1] + Marker[r+1, c+1] < 23
+  )
+);
+
 % Objective
 solve satisfy;
 

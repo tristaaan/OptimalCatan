@@ -87,7 +87,7 @@ constraint forall(r in 1..nRows-1)(
 % Objective
 solve satisfy;
 
-output[show2d(Marker)];
+output["\(showJSON(Marker))\n"];
 
 output[ "   \(Marker[1,1..3])\n" ];
 output[ " \(Marker[2,1..4])\n" ];

@@ -5,7 +5,7 @@ array [1..9] of var 1..9: sq;
 
 % Constraints
 % all must be unique
-constraint alldifferent([sq[i] | i in 1..9]);
+constraint alldifferent(sq);
 
 % rows
 constraint sum(sq[1..3]) = sum(sq[4..6]);

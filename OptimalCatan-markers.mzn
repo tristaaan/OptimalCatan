@@ -65,10 +65,14 @@ constraint forall(r in Rows)(
   )
 );
 
-% All resources have different markers, i.e. 6 or 8 do not appear on a resource twice
-% but neither does any other number :)
+% All resources have different markers
 constraint forall(res in {3,4,5,6,7}) (
+  % all markers different
   all_different([Marker[r,c] | r in Rows, c in Cols where Board[r,c] = res ])
+  /\
+  % only one 6 or 8 per resource
+  count([Marker[r,c] | r in Rows, c in Cols where Board[r,c] = res ], 8) +
+  count([Marker[r,c] | r in Rows, c in Cols where Board[r,c] = res ], 6) <= 1
 );
 
 % distribute markers so that the sum of a vertex is under some threshold
@@ -83,7 +87,7 @@ constraint forall(r in 1..nRows-1)(
 % Objective
 solve satisfy;
 
-% output[show2d(Marker)];
+output[show2d(Marker)];
 
 output[ "   \(Marker[1,1..3])\n" ];
 output[ " \(Marker[2,1..4])\n" ];

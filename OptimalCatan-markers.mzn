@@ -14,11 +14,13 @@ set of int: Cols = 1..nCols;
 %              1      2       3      4      5      6      7 
 enum Resource={Water, Desert, Brick, Grain, Sheep, Stone, Wood};
 set of int: Resources = 1..7;
-array [Rows,Cols] of Resources: Board = [| 2, 7, 5, 1, 1 |
-   3, 4, 6, 7, 1 |
-   6, 5, 3, 5, 4 |
-   1, 7, 4, 6, 3 |
-   1, 1, 5, 7, 4 |];
+% uncomment for testing
+array [Rows,Cols] of Resources: Board;
+% array [Rows,Cols] of Resources: Board = [| 2, 7, 5, 1, 1 |
+%    3, 4, 6, 7, 1 |
+%    6, 5, 3, 5, 4 |
+%    1, 7, 4, 6, 3 |
+%    1, 1, 5, 7, 4 |];
 
 % Decision Variables
 array[Rows, Cols] of var Number: Marker;
@@ -87,10 +89,13 @@ constraint forall(r in 1..nRows-1)(
 % Objective
 solve satisfy;
 
-output["\(showJSON(Marker))\n"];
+output["{\n"];
+output["board: \(showJSON(Board)),\n"];
+output["markers: \(showJSON(Marker))\n"];
+output["}\n"];
 
-output[ "   \(Marker[1,1..3])\n" ];
-output[ " \(Marker[2,1..4])\n" ];
-output[ "\(Marker[3,..])\n" ];
-output[ " \(Marker[4,2..])\n" ];
-output[ "   \(Marker[5,3..])\n" ];
+% output[ "   \(Marker[1,1..3])\n" ];
+% output[ " \(Marker[2,1..4])\n" ];
+% output[ "\(Marker[3,..])\n" ];
+% output[ " \(Marker[4,2..])\n" ];
+% output[ "   \(Marker[5,3..])\n" ];

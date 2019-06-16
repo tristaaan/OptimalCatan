@@ -70,12 +70,16 @@ constraint Board[1,1] < Board[5,3];
 constraint Board[3,5] < Board[5,3];
 
 % Objective
-solve satisfy;
+solve :: seq_search([
+    int_search(Board, smallest, indomain_random, complete)
+  ]) satisfy;
 
-% output[show2d(Board)];
+output["Board="];
+output[show2d(Board)];
+output[";"]
 
-output[ "   \(Board[1,1..3])\n" ];
-output[ " \(Board[2,1..4])\n" ];
-output[ "\(Board[3,..])\n" ];
-output[ " \(Board[4,2..])\n" ];
-output[ "   \(Board[5,3..])\n" ];
+% output[ "   \(Board[1,1..3])\n" ];
+% output[ " \(Board[2,1..4])\n" ];
+% output[ "\(Board[3,..])\n" ];
+% output[ " \(Board[4,2..])\n" ];
+% output[ "   \(Board[5,3..])\n" ];

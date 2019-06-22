@@ -15,17 +15,12 @@ constraint sum(sq[4..6]) = sum(sq[7..9]);
 constraint sq[1]+sq[4]+sq[7] = sq[2]+sq[5]+sq[8];
 constraint sq[2]+sq[5]+sq[8] = sq[3]+sq[6]+sq[9];
 
+% diagonals
+constraint sq[1]+sq[5]+sq[9] = sq[3] + sq[5] + sq[7];
+
 % search space reduction
-constraint sq[1] = 9;
-constraint sq[3] = 1;
-
-% first row descending in value
-constraint sq[1] > sq[2];
-constraint sq[2] > sq[3];
-
-% first column descending in value
-constraint sq[1] > sq[4];
-constraint sq[4] > sq[7];
+constraint sq[1] = 2;
+constraint sq[3] = 4;
 
 % solve!
 solve satisfy;

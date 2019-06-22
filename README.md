@@ -18,5 +18,5 @@ $ ./gen_island.sh $(( ( RANDOM % 10000 )  + 1 ))
 
 Where or you can provide your own random seed, otherwise the island will always be based on the first solution the models find.
 
-<!-- ## [Read more]() -->
+## [Read more](https://www.thesixsides.com/blog/2019/06/16/optimal-catan/)
 

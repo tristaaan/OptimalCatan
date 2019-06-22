@@ -42,12 +42,9 @@ constraint forall(r in 1..nRows-1) (
 
 % 6 and 8 not adjacent
 constraint forall(r in 1..nRows-1)(
-  forall(c in 1..nCols-1 where Marker[r,c] in {6,8})(
-    not(Marker[r+1, c] in {6,8}) 
-    /\
-    not(Marker[r, c+1] in {6,8})
-    /\
-    not(Marker[r+1, c+1] in {6,8}) 
+  forall(c in 1..nCols-1)(
+    count([Marker[r,c], Marker[r,c+1], Marker[r+1,c], Marker[r+1,c+1]], 8) +
+    count([Marker[r,c], Marker[r,c+1], Marker[r+1,c], Marker[r+1,c+1]], 6) <= 1
   )
 );
 
@@ -93,6 +90,8 @@ output["{\n"];
 output["board: \(showJSON(Board)),\n"];
 output["markers: \(showJSON(Marker))\n"];
 output["}\n"];
+
+% output[show2d(Marker)];
 
 % output[ "   \(Marker[1,1..3])\n" ];
 % output[ " \(Marker[2,1..4])\n" ];

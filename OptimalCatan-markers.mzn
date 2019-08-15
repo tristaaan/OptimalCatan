@@ -87,8 +87,8 @@ constraint forall(r in 1..nRows-1)(
 solve satisfy;
 
 output["{\n"];
-output["board: \(showJSON(Board)),\n"];
-output["markers: \(showJSON(Marker))\n"];
+output["\"board\": \(showJSON(Board)),\n"];
+output["\"markers\": \(showJSON(Marker))\n"];
 output["}\n"];
 
 % output[show2d(Marker)];
